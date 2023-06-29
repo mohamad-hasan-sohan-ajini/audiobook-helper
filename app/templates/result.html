@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon1.png') }}">
+
+<audio id="audio" controls>
+    <source width="1000" src="{{ mp3_filename }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<br>
+<br>
+<br>
+
+<div id="transcription">
+    <pre>
+    {{ text }}
+    </pre>
+</div>
+
+<script>
+    // Get the audio element
+    var audio = document.getElementById('audio');
+
+    // Get the transcription container and its text
+    var transcriptionContainer = document.getElementById('transcription');
+    var transcriptionText = transcriptionContainer.innerText;
+
+    // Clear the transcription container
+    transcriptionContainer.innerText = '';
+
+    // Split the transcription text into lines (assuming one word per line)
+    var lines = transcriptionText.split('\n');
+
+    // Add each word to the transcription container and store its timings
+    lines.forEach(line => {
+        var parts = line.split(',');
+        var wordSpan = document.createElement('span');
+        wordSpan.innerText = parts[0] + ' ';
+        wordSpan.dataset.start = parts[1];
+        wordSpan.dataset.end = parts[2];
+        transcriptionContainer.appendChild(wordSpan);
+        console.log(parts[0]);
+    });
+
+    // Highlight the word when its start time is reached
+    audio.addEventListener('timeupdate', function() {
+        for (var i = 0; i < transcriptionContainer.children.length; i++) {
+            var wordSpan = transcriptionContainer.children[i];
+            if (audio.currentTime >= wordSpan.dataset.start && audio.currentTime <= wordSpan.dataset.end) {
+                wordSpan.style.backgroundColor = 'yellow';
+            }
+            else {
+                wordSpan.style.backgroundColor = 'transparent';
+            }
+        }
+    });
+
+</script>
+
+</html>

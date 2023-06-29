@@ -1,0 +1,30 @@
+.body {
+    background: white;
+}
+
+.bookInfoDiv {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 140, 0);
+}
+
+.bookImage {
+    /* height: 1%; */
+    width: 15%;
+}
+
+.searchForm {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+.fullImage {
+    height: 100%;
+    width: 100%;
+}
+
+audio {
+    width: 100%;
+    display: block;
+}

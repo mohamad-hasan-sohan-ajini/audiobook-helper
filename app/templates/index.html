@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon1.png') }}">
+
+<html>
+    <div class="bookInfoDiv">
+        <center>
+            <h1>The subtle art of not giving a fuck</h1>
+            <br>
+            <img class="bookImage" src="{{ url_for('static', filename='the subtle art of not giving a fuck.jpg') }}" alt="information image">
+        </center>
+    </div>
+
+    <div class="searchForm">
+        <h1>Search the audio book</h1>
+        <form action="/" method="post">
+            Phrase: <input name="phrase" type="text" size="50" maxlength="50" placeholder=""><br>
+            Start Offset: <input name="start_offset" type="range" min="0" max="10" value={{ start_offset }} oninput="this.nextElementSibling.value = this.value"> <output>{{ start_offset }}</output> seconds<br>
+            Audio Duration: <input name="audio_duration" type="range" min="1" max="300" value={{ audio_duration }} oninput="this.nextElementSibling.value = this.value"> <output>{{ audio_duration }}</output> seconds<br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</html>
