@@ -12,5 +12,5 @@ wget -O "static/the subtle art of not giving a fuck.mp3" "https://free.audiobook
 
 ```bash
 docker build -t audiobook:latest .
-docker run --rm -it --name audiobook_server -p 1234:5000 audiobook:latest
+docker run -id --name audiobook_server -p 1234:5000 --restart unless-stopped audiobook:latest
 ```
