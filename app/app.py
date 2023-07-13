@@ -8,6 +8,8 @@ from flask import Flask, redirect, render_template, request, send_file, url_for
 
 from crop import crop_audio, find_phrase_index
 
+with open('static/e2p_dict.json') as f:
+    e2p_dict = json.load(f)
 app = Flask(__name__)
 
 
@@ -57,6 +59,8 @@ def root():
                         + str(round(item['start'] - start_time, 2))
                         + ','
                         + str(round(item['end'] - start_time, 2))
+                        + ','
+                        + ' + '.join(e2p_dict.get(item['word'].lower(), ['']))
                     )
                     for item
                     in words

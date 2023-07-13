@@ -39,6 +39,7 @@
         wordSpan.innerText = parts[0] + ' ';
         wordSpan.dataset.start = parts[1];
         wordSpan.dataset.end = parts[2];
+        wordSpan.title = parts[3];
         transcriptionContainer.appendChild(wordSpan);
         console.log(parts[0]);
     });
